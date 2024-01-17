@@ -24,6 +24,9 @@ export default async function RootLayout({
       id: session.user.id,
       name: session.user.name,
       email: session.user.email,
+
+      username: session.user.username,
+      password: "",
     }
   }
   return (
