@@ -11,15 +11,46 @@ const createSongSchema = z.object({
   isplaying: z.number().default(0),
   createdDate: z.date(),
 })
-export async function createSongData(formData: FormData) {
+export async function addSong(formData: FormData) {
   const songData = createSongSchema.parse(formData)
   songData.createdDate = new Date()
   try {
     const song = await db.song.create({
-      songData,
+      data: songData,
     })
     return song
   } catch (e) {
     return Error("Failed to Create Song")
+  }
+}
+
+export async function fetchSongs() {
+  try {
+    const songs = await db.song.findMany({
+      where: {
+        isplaying: 0,
+      },
+      orderBy: [
+        {
+          createdDate: "asc",
+        },
+      ],
+    })
+    return songs
+  } catch (e) {
+    return Error("Failed to fetch songs")
+  }
+}
+
+export async function deleteSong(id: number) {
+  try {
+    const deletedSong = await db.song.delete({
+      where: {
+        id: id,
+      },
+    })
+    return deletedSong
+  } catch (e) {
+    return Error("Failed to delete song")
   }
 }
