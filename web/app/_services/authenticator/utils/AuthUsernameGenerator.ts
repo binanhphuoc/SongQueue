@@ -1,4 +1,4 @@
-import crypto from 'crypto'
+import crypto from "crypto"
 
 export function generateUniqueUsername(
   existingUsernames: string[],
@@ -10,7 +10,7 @@ export function generateUniqueUsername(
   while (similarUsernames.has(bestUniqueUsername) && i < 20) {
     bestUniqueUsername = `${inferredUsername}.${crypto
       .randomBytes(3)
-      .toString('hex')}`
+      .toString("hex")}`
     i++
   }
 

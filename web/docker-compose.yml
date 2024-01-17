@@ -11,8 +11,8 @@ services:
       - 5432:5432
     environment:
       # https://hub.docker.com/_/postgres: Default values for these values in Docker
-      POSTGRES_USER: justkudo
-      POSTGRES_PASSWORD: justkudo
+      POSTGRES_USER: songqueue
+      POSTGRES_PASSWORD: songqueue
     volumes:
       - db:/var/lib/postgresql/data
 
@@ -21,7 +21,7 @@ services:
     restart: always
     ports:
       - '6379:6379'
-    command: redis-server --save 20 1 --loglevel warning --requirepass justkudo
+    command: redis-server --save 20 1 --loglevel warning --requirepass songqueue
     volumes:
       - cache:/data
 
@@ -48,9 +48,9 @@ services:
     entrypoint: /bin/sh -c
     command: >
       "
-        aws --endpoint-url=http://localstack:4566 s3api create-bucket --bucket justkudo --region us-east-1
+        aws --endpoint-url=http://localstack:4566 s3api create-bucket --bucket songqueue --region us-east-1
         echo '{\"CORSRules\": [{\"AllowedHeaders\": [\"*\"],\"AllowedMethods\": [\"GET\", \"POST\", \"PUT\",\"HEAD\", \"DELETE\"],\"AllowedOrigins\": [\"${S3_CORS_ALLOWED_ORIGINS}\", \"https://app.localstack.cloud\", \"http://app.localstack.cloud\"],\"ExposeHeaders\": [\"ETag\"]}]}' >> cors.json
-        aws --endpoint-url=http://localstack:4566 s3api put-bucket-cors --bucket justkudo --cors-configuration file://cors.json
+        aws --endpoint-url=http://localstack:4566 s3api put-bucket-cors --bucket songqueue --cors-configuration file://cors.json
         tail -F anything
       "
 

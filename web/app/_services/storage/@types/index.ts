@@ -1,1 +1,1 @@
-export const allowedFileTypes = ['image/png', 'image/jpeg']
+export const allowedFileTypes = ["image/png", "image/jpeg"]

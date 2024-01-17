@@ -1,8 +1,9 @@
-import formData from 'form-data'
-import Mailgun, { MessagesSendResult } from 'mailgun.js'
+import Mailgun, { MessagesSendResult } from "mailgun.js"
+import formData from "form-data"
+
 const mailgun = new Mailgun(formData)
 const client = mailgun.client({
-  username: 'api',
+  username: "api",
   key: process.env.MAILGUN_API_KEY!,
 })
 
@@ -12,7 +13,7 @@ export async function sendEmailWithText(
   text: string
 ): Promise<MessagesSendResult> {
   return client.messages.create(process.env.MAILGUN_DOMAIN!, {
-    from: 'Just#Kudo Team <hello@justkudo.com>',
+    from: "SongQueue Team <hello@songqueue.com>",
     to: toEmail,
     subject,
     text,

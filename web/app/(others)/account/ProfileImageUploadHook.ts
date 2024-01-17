@@ -1,5 +1,5 @@
-import { requestProfileImageUploadLink } from '@/app/_services/storage'
-import { useState } from 'react'
+import { requestProfileImageUploadLink } from "@/app/_services/storage"
+import { useState } from "react"
 
 export enum ImageUploadStatus {
   IDLE,
@@ -33,10 +33,10 @@ export function useProfileImageUpload(): ImageUploadResponse {
         Object.entries(fields).forEach(([key, value]) => {
           formData.append(key, value as string)
         })
-        formData.append('file', file)
+        formData.append("file", file)
 
         return fetch(url, {
-          method: 'POST',
+          method: "POST",
           body: formData,
         })
       })

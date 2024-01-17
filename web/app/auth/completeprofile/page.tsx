@@ -1,9 +1,9 @@
-'use client'
+"use client"
 
-import { completeProfileForUser } from './actions'
-import { useSession } from 'next-auth/react'
-import { useRouter } from 'next/navigation'
-import { signOut } from '@/app/_services/authenticator/actions'
+import { completeProfileForUser } from "./actions"
+import { signOut } from "@/app/_services/authenticator/actions"
+import { useSession } from "next-auth/react"
+import { useRouter } from "next/navigation"
 
 export default function CompleteProfile() {
   const session = useSession()
@@ -12,24 +12,26 @@ export default function CompleteProfile() {
     <>
       <form
         action={(formData: FormData) => {
-          completeProfileForUser(
-            session.data?.user?.email!,
-            formData.get('name') as string
-          )
-            .then(() => {
-              return session.update({ shouldSignUp: false })
-            })
-            .then(() => {
-              router.refresh()
-            })
-            .catch((e) => {
-              console.error(e)
-            })
+          if (session.data?.user?.email) {
+            completeProfileForUser(
+              session.data?.user?.email,
+              formData.get("name") as string
+            )
+              .then(() => {
+                return session.update({ shouldSignUp: false })
+              })
+              .then(() => {
+                router.refresh()
+              })
+              .catch((e) => {
+                console.error(e)
+              })
+          }
         }}
         className="space-y-3"
       >
         <div className="flex-1 rounded-lg bg-gray-50 px-6 pb-4 pt-8">
-          <h1 className={`mb-3 text-2xl text-gray-900`}>
+          <h1 className={"mb-3 text-2xl text-gray-900"}>
             Almost there! Finish creating account for full experience.
           </h1>
           <div className="w-full">
