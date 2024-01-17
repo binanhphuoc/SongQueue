@@ -16,3 +16,14 @@ model User {
   username String @unique
   name     String
 }
+
+model Song {
+  id           Int      @id @default(autoincrement())
+  songname     String
+  singer       String
+  tableno      Int
+  relationship String
+  performers   String
+  isplaying    Int      @default(0)
+  createdDate  DateTime @default(now())
+}
