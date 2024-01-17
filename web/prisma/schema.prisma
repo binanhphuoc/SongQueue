@@ -25,5 +25,6 @@ model Song {
   relationship String
   performers   String
   isplaying    Int      @default(0)
+  youtubelink  String
   createdDate  DateTime @default(now())
 }

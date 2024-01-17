@@ -9,9 +9,13 @@ const createSongSchema = z.object({
   singer: z.string(),
   tableno: z.number(),
   isplaying: z.number().default(0),
+  youtubelink: z.string(),
   createdDate: z.date(),
 })
-export async function addSong(formData: FormData) {
+export async function addSong(
+  prevSate: string | undefined,
+  formData: FormData
+) {
   const songData = createSongSchema.parse(formData)
   songData.createdDate = new Date()
   try {
