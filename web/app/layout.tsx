@@ -1,5 +1,7 @@
+import Image from "next/image"
 import { SessionProvider } from "next-auth/react"
 import { Inter } from "next/font/google"
+import BgImage from "@/public/bg-image.jpeg"
 import { auth } from "./_services/authenticator"
 import type { Metadata } from "next"
 import "./globals.css"
@@ -32,7 +34,29 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <SessionProvider session={session}>{children}</SessionProvider>
+        <SessionProvider session={session}>
+          <div className="min-h-screen min-w-screen bg-black flex justify-center">
+            {/* Container */}
+            <div className="max-w-3xl w-full h-screen bg-red relative">
+              {/* Background image */}
+              <Image
+                src={BgImage.src}
+                height={BgImage.height}
+                width={BgImage.width}
+                alt="Background Image"
+                className="w-full h-full object-cover absolute top-0 z-0"
+              />
+
+              {/* Overlay */}
+              <div className="w-full h-full absolute top-0 backdrop-blur-sm z-10" />
+
+              {/* Content */}
+              <main className="flex flex-col relative z-20 h-full">
+                {children}
+              </main>
+            </div>
+          </div>
+        </SessionProvider>
       </body>
     </html>
   )

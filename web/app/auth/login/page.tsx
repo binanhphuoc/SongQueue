@@ -1,23 +1,37 @@
-"use client"
-
-import { signInWithGoogle } from "@/app/_services/authenticator/actions"
+import Link from "next/link"
 
 export default function LoginForm() {
   return (
-    <div className="flex-1 rounded-lg bg-gray-50 px-6 pb-4 pt-8">
-      <h1 className={"mb-3 text-2xl text-gray-900"}>
-        Please log in to continue.
+    <div className="min-h-fit grow flex-shrink-0 flex flex-col items-center justify-center gap-6 overflow-auto py-12">
+      <h1 className="text-4xl font-bold text-wrap text-center leading-normal">
+        Tien & Nhi Wedding
       </h1>
-      <button
-        className="mt-4 w-full text-gray-900"
-        onClick={() => {
-          signInWithGoogle().catch((e) => {
-            console.error(e)
-          })
-        }}
-      >
-        Sign in with Google
-      </button>
+
+      <form className="rounded-xl bg-[rgba(255,255,255,0.70)] flex flex-col w-full max-w-lg overflow-hidden gap-6 p-6">
+        <div className="flex flex-col gap-1">
+          <label className="text-black">Username</label>
+          <input
+            className="text-black placeholder:text-slate-500 bg-transparent outline-none p-2 border-b-2 border-[rgba(128,128,128,1)] focus:border-[rgba(255,107,196,1)] transition-[border-color]"
+            placeholder="Admin username..."
+          />
+        </div>
+
+        <div className="flex flex-col gap-1">
+          <label className="text-black">Password</label>
+          <input
+            className="text-black placeholder:text-slate-500 bg-transparent outline-none p-2 border-b-2 border-[rgba(128,128,128,1)] focus:border-[rgba(255,107,196,1)] transition-[border-color]"
+            placeholder="Password..."
+          />
+        </div>
+
+        <button className="bg-[#c5338a] p-2 rounded-lg font-bold mt-2">
+          Submit
+        </button>
+
+        <Link href={"/"} className="text-black flex justify-center">
+          Back to home
+        </Link>
+      </form>
     </div>
   )
 }
