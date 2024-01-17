@@ -1,9 +1,9 @@
 "use server"
 
-import { allowedFileTypes } from "./@types"
 import { createPresignedPost } from "@aws-sdk/s3-presigned-post"
 import { S3Client } from "@aws-sdk/client-s3"
 import { v4 as uuidv4 } from "uuid"
+import { allowedFileTypes } from "./@types"
 
 const client = new S3Client({
   endpoint: process.env.S3_ENDPOINT!,

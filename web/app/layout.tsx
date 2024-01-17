@@ -1,6 +1,6 @@
-import { auth } from "./_services/authenticator"
 import { SessionProvider } from "next-auth/react"
 import { Inter } from "next/font/google"
+import { auth } from "./_services/authenticator"
 import type { Metadata } from "next"
 import "./globals.css"
 

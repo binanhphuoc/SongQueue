@@ -1,6 +1,6 @@
-import SongItem from "./components/SongItem"
 import Image from "next/image"
 import BgImage from "@/public/bg-image.jpeg"
+import SongItem from "./components/SongItem"
 
 export default function Home() {
   const test = [
@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <div className="min-h-screen min-w-screen bg-black flex justify-center">
       {/* Container */}
-      <div className="max-w-5xl w-full h-screen bg-red relative">
+      <div className="max-w-3xl w-full h-screen bg-red relative">
         {/* Background image */}
         <Image
           src={BgImage.src}

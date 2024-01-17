@@ -1,9 +1,9 @@
 "use client"
 
-import { completeProfileForUser } from "./actions"
-import { signOut } from "@/app/_services/authenticator/actions"
 import { useSession } from "next-auth/react"
 import { useRouter } from "next/navigation"
+import { signOut } from "@/app/_services/authenticator/actions"
+import { completeProfileForUser } from "./actions"
 
 export default function CompleteProfile() {
   const session = useSession()

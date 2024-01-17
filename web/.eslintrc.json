@@ -42,17 +42,23 @@
     // "semi": ["error", "always"],
 
     "import/order": [
-      "error",
+      "warn",
       {
         "groups": [
-          "index",
-          "sibling",
-          "parent",
-          "internal",
-          "external",
           "builtin",
+          "external",
+          "internal",
+          "parent",
+          "sibling",
+          "index",
           "object",
           "type"
+        ],
+        "pathGroups": [
+          {
+            "pattern": "@/**",
+            "group": "internal"
+          }
         ]
       }
     ],

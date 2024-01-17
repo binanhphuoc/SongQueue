@@ -1,11 +1,11 @@
 "use client"
 
+import { useEffect, useState } from "react"
+import { allowedFileTypes } from "@/app/_services/storage/@types"
 import {
   ImageUploadStatus,
   useProfileImageUpload,
 } from "./ProfileImageUploadHook"
-import { allowedFileTypes } from "@/app/_services/storage/@types"
-import { useEffect, useState } from "react"
 
 export default function Page() {
   const [file, setFile] = useState<File | null>(null)

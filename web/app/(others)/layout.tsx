@@ -1,6 +1,6 @@
-import NavAccount from "./NavbarAccountComponent"
 import Link from "next/link"
 import { auth } from "@/app/_services/authenticator"
+import NavAccount from "./NavbarAccountComponent"
 
 export default async function OthersLayout({
   children,

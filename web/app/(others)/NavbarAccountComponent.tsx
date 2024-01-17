@@ -1,7 +1,7 @@
 "use client"
 
-import { signOut } from "../_services/authenticator/actions"
 import Link from "next/link"
+import { signOut } from "../_services/authenticator/actions"
 
 export default function NavAccount() {
   return (

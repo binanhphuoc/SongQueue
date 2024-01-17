@@ -1,6 +1,6 @@
-import { authConfig } from "./BaseAuthConfig"
 import NextAuth from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
+import { authConfig } from "./BaseAuthConfig"
 
 export const { auth, signIn, signOut, handlers } = NextAuth({
   ...authConfig,
