@@ -6,6 +6,7 @@ import Welcome from "@/public/welcome.png"
 import BgImage from "@/public/bg-image.jpeg"
 import "../globals.css"
 import React, { useState } from "react"
+import { playfair_display, playfair_display_sc } from "./Fonts"
 
 const INTRO_STAY_STILL_DURATION_SEC = 0.5
 
@@ -67,7 +68,11 @@ export default function IntroAnimation({
                 className="w-[280px] h-auto object-cover"
               />
 
-              <p className="text-sm text-[rgba(0,0,0,0.70)]">TO OUR WEDDING</p>
+              <p
+                className={`${playfair_display_sc.className} font-normal text-sm text-[rgba(0,0,0,0.70)]`}
+              >
+                TO OUR WEDDING
+              </p>
             </motion.div>
 
             {/* Title */}
@@ -87,15 +92,21 @@ export default function IntroAnimation({
               onAnimationComplete={() => setCompleteIntroAnimation(true)}
               className="flex flex-col text-[rgba(0,0,0,0.70)]"
             >
-              <h1 className="text-4xl font-bold text-wrap text-center leading-normal font-['Playfair_Display']">
+              <h1
+                className={`${playfair_display_sc.className} text-4xl font-bold text-wrap text-center leading-normal font-['Playfair_Display']`}
+              >
                 Tiến Nguyễn
               </h1>
 
-              <h1 className="text-2xl font-bold text-wrap text-center leading-normal font-['Playfair_Display']">
+              <h1
+                className={`${playfair_display.className} text-2xl font-normal text-wrap text-center leading-normal font-['Playfair_Display']`}
+              >
                 &
               </h1>
 
-              <h1 className="text-4xl font-bold text-wrap text-center leading-normal font-['Playfair_Display']">
+              <h1
+                className={`${playfair_display_sc.className} text-4xl font-bold text-wrap text-center leading-normal font-['Playfair_Display']`}
+              >
                 Nhi Nguyễn
               </h1>
             </motion.div>
