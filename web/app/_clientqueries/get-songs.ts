@@ -30,11 +30,12 @@ const optionsWrapper = (
   return {
     queryKey,
     queryFn,
+
     // https://tanstack.com/query/latest/docs/react/guides/query-retries
     retry: false,
-    // https://www.codemzy.com/blog/react-query-cachetime-staletime
-    staleTime: 5 * 1000, // 5 secs
-    cacheTime: 10 * 1000, // 10 secs
+
+    refetchInterval: 5 * 1000, // 5 secs
+
     ...(options as any),
   }
 }
