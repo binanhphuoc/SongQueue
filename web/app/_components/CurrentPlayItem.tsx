@@ -3,9 +3,11 @@ import { Song } from "@prisma/client"
 import { useSession } from "next-auth/react"
 import React, { useState } from "react"
 import { Drawer } from "@mui/material"
+import { useQueryClient } from "@tanstack/react-query"
 import PlayingButton from "@/public/playing-button.png"
 import SkipButton from "@/public/skip.png"
 import { playNextSong } from "../_actions/song"
+import GetSongs from "../_clientqueries/get-songs"
 import SongForm from "./AddButton/SongForm"
 
 type Props = {
@@ -16,12 +18,21 @@ export default function CurrentPlayItem(props: Props) {
   const session = useSession()
   const user = session.data?.user
 
+  const queryClient = useQueryClient()
+
   const [drawer, toggleDrawer] = useState(false)
 
   const handlePlayNext = () => {
-    playNextSong().catch((err) => {
-      console.error("Error", err)
-    })
+    playNextSong()
+      .then(async () => {
+        await queryClient.invalidateQueries({
+          queryKey: GetSongs.queryKey,
+          exact: true,
+        })
+      })
+      .catch((err) => {
+        console.error("Error", err)
+      })
   }
 
   return (

@@ -2,7 +2,6 @@
 
 import { zfd } from "zod-form-data"
 import { z } from "zod"
-import { revalidateTag } from "next/cache"
 import { Song } from "@prisma/client"
 import { db } from "@/app/_services/Database"
 
@@ -20,10 +19,6 @@ const songSchema = z.object({
   isplaying: z.coerce.number().default(0),
   createdDate: z.date(),
 })
-
-export async function revalidateSongs() {
-  revalidateTag("songs")
-}
 
 export async function addSong(formData: FormData) {
   const createSongSchema = songSchema.pick({
@@ -43,7 +38,6 @@ export async function addSong(formData: FormData) {
     const song = await db.song.create({
       data: { ...songData },
     })
-    revalidateSongs()
     return song
   } catch (e) {
     return Error("Failed to create song")
@@ -57,7 +51,6 @@ export async function deleteSong(id: number) {
         id: id,
       },
     })
-    revalidateSongs()
     return deletedSong
   } catch (e) {
     return Error("Failed to delete song")
@@ -77,7 +70,6 @@ export async function playSong(id: number) {
       data: { isplaying: 1 },
     })
 
-    revalidateSongs()
     return { deletedSong, newPlaySong }
   } catch (e) {
     return Error("Failed to play song")
@@ -116,7 +108,6 @@ export async function playNextSong() {
       })
     }
 
-    revalidateSongs()
     return { deletedSong, newPlaySong }
   } catch (e) {
     return Error("Failed to play song")
