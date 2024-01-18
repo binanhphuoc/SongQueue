@@ -4,14 +4,14 @@ import { Alert, Snackbar } from "@mui/material"
 import { useState } from "react"
 import { Song } from "@prisma/client"
 import { useQueryClient } from "@tanstack/react-query"
-import { addSong } from "@/app/_actions/song"
+import { addSong, updateSong } from "@/app/_actions/song"
 import GetSongs from "@/app/_clientqueries/get-songs"
 import SongFormField from "./SongFormField"
 
 type Props = {
   mode: "create" | "update" | "view"
   toggleDrawer: React.Dispatch<React.SetStateAction<boolean>>
-  song?: Song
+  song?: Song // Should not be null for update and view
 }
 
 export default function SongForm(props: Props) {
@@ -26,12 +26,18 @@ export default function SongForm(props: Props) {
     //   result = entries.next()
     // }
 
-    if (props.mode === "view") {
-      return
+    let promise: Promise<Song> | null = null
+
+    if (props.mode === "create") {
+      promise = addSong(formData)
     }
 
-    addSong(formData)
-      .then(async () => {
+    if (props.mode === "update" && props.song) {
+      promise = updateSong(props.song.id, formData)
+    }
+
+    promise
+      ?.then(async () => {
         await queryClient.invalidateQueries({
           queryKey: GetSongs.queryKey,
           exact: true,
@@ -80,7 +86,11 @@ export default function SongForm(props: Props) {
         </p>
 
         <h1 className="text-lg font-bold">
-          {props.mode === "view" ? "Song Details" : "Add Song"}
+          {props.mode === "view"
+            ? "Song Details"
+            : props.mode === "create"
+              ? "Add Song"
+              : "Update Song"}
         </h1>
 
         {props.mode !== "view" && (
@@ -117,7 +127,7 @@ export default function SongForm(props: Props) {
           placeholder="e.g. Johnny, Hanna"
           required
           disabled={props.mode === "view"}
-          value={props.song?.performers}
+          defaultValue={props.song?.performers}
         />
 
         <SongFormField
@@ -126,7 +136,7 @@ export default function SongForm(props: Props) {
           placeholder="e.g. Friend"
           required
           disabled={props.mode === "view"}
-          value={props.song?.relationship}
+          defaultValue={props.song?.relationship}
         />
 
         <SongFormField
@@ -136,7 +146,7 @@ export default function SongForm(props: Props) {
           type="number"
           required
           disabled={props.mode === "view"}
-          value={props.song?.tableno}
+          defaultValue={props.song?.tableno}
         />
 
         <SongFormField
@@ -145,7 +155,7 @@ export default function SongForm(props: Props) {
           placeholder="e.g. Đám cưới nha?"
           required
           disabled={props.mode === "view"}
-          value={props.song?.songname}
+          defaultValue={props.song?.songname}
         />
 
         <SongFormField
@@ -154,7 +164,7 @@ export default function SongForm(props: Props) {
           placeholder="e.g. HỒNG THANH X MIE"
           required
           disabled={props.mode === "view"}
-          value={props.song?.singer}
+          defaultValue={props.song?.singer}
         />
 
         <SongFormField
@@ -162,7 +172,7 @@ export default function SongForm(props: Props) {
           label="Youtube Link"
           placeholder="e.g. https://youtu.be/sXa8ylsdaE4?si=56oeynged-QHvLYK"
           disabled={props.mode === "view"}
-          value={props.song?.youtubelink ?? undefined}
+          defaultValue={props.song?.youtubelink ?? undefined}
         />
       </div>
     </form>

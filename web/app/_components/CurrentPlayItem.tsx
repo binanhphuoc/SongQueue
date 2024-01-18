@@ -90,7 +90,11 @@ export default function CurrentPlayItem(props: Props) {
           paper: "!bg-transparent flex items-center h-fit",
         }}
       >
-        <SongForm mode="view" toggleDrawer={toggleDrawer} song={props.song} />
+        <SongForm
+          mode={user ? "update" : "view"}
+          toggleDrawer={toggleDrawer}
+          song={props.song}
+        />
       </Drawer>
     </React.Fragment>
   )

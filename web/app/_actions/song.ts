@@ -40,7 +40,32 @@ export async function addSong(formData: FormData) {
     })
     return song
   } catch (e) {
-    return Error("Failed to create song")
+    throw Error("Failed to create song")
+  }
+}
+
+export async function updateSong(id: number, formData: FormData) {
+  const updateSongSchema = songSchema.pick({
+    performers: true,
+    relationship: true,
+    tableno: true,
+
+    songname: true,
+    singer: true,
+    youtubelink: true,
+  })
+
+  const formDataSchema = zfd.formData(updateSongSchema)
+  const songData = formDataSchema.parse(formData)
+
+  try {
+    const song = await db.song.update({
+      where: { id },
+      data: { ...songData },
+    })
+    return song
+  } catch (e) {
+    throw Error("Failed to update song")
   }
 }
 
@@ -53,7 +78,7 @@ export async function deleteSong(id: number) {
     })
     return deletedSong
   } catch (e) {
-    return Error("Failed to delete song")
+    throw Error("Failed to delete song")
   }
 }
 
@@ -72,7 +97,7 @@ export async function playSong(id: number) {
 
     return { deletedSong, newPlaySong }
   } catch (e) {
-    return Error("Failed to play song")
+    throw Error("Failed to play song")
   }
 }
 
@@ -110,6 +135,6 @@ export async function playNextSong() {
 
     return { deletedSong, newPlaySong }
   } catch (e) {
-    return Error("Failed to play song")
+    throw Error("Failed to play song")
   }
 }

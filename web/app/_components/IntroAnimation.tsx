@@ -1,11 +1,11 @@
 "use client"
 
+import React, { useState } from "react"
 import { motion } from "framer-motion"
 import Image from "next/image"
 import Welcome from "@/public/welcome.png"
 import BgImage from "@/public/bg-image.jpeg"
 import "../globals.css"
-import React, { useState } from "react"
 import { playfair_display, playfair_display_sc } from "./Fonts"
 
 const INTRO_STAY_STILL_DURATION_SEC = 0.5
@@ -18,7 +18,7 @@ export default function IntroAnimation({
   const [didCompleteIntroAnimation, setCompleteIntroAnimation] = useState(false)
 
   return (
-    <div className="max-w-3xl w-full h-screen bg-red relative">
+    <div className="max-w-3xl w-full h-screen relative">
       {/* Background image */}
       <Image
         src={BgImage.src}
@@ -27,6 +27,7 @@ export default function IntroAnimation({
         alt="Background Image"
         className="w-full h-full object-cover absolute top-0 z-0"
       />
+
       {/* Overlay */}
       <motion.div
         initial={{ opacity: 0 }}
@@ -48,7 +49,7 @@ export default function IntroAnimation({
               transition={{
                 // total duration is 2.4 sec
                 duration: 2.4,
-                // On that span of 2.4 sec, 4 keyframes at sec 0, 0.7, 1.7, and 2.4
+                // On that span of 2.4 sec, 4 keyframes at sec 0, 0.7, 1.4, and 2.4
                 times: [
                   0,
                   0.7 / 2.4,
@@ -112,6 +113,7 @@ export default function IntroAnimation({
             </motion.div>
           </div>
         )}
+
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
