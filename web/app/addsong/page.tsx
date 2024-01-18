@@ -1,6 +1,6 @@
 "use client"
 
-export default function AddSong(formData: FormData) {
+export default function AddSong() {
   return (
     <>
       <form className="w-full max-w-sm">

@@ -1,5 +1,8 @@
 import { db } from "@/app/_services/Database"
 
+// https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config#revalidate
+export const revalidate = 5 // sec
+
 export async function GET(_request: Request) {
   try {
     const songs = await db.song.findMany({
@@ -11,6 +14,6 @@ export async function GET(_request: Request) {
     })
     return Response.json({ songs })
   } catch (e) {
-    return Error("Failed to fetch songs")
+    throw Error("Failed to fetch songs")
   }
 }
