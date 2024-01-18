@@ -1,12 +1,10 @@
 import { SessionProvider } from "next-auth/react"
-import { Inter } from "next/font/google"
 import { auth } from "./_services/authenticator"
 import type { Metadata } from "next"
 import "./globals.css"
 import TanStackProvider from "./_providers/TanStackProvider"
 import IntroAnimation from "./_components/IntroAnimation"
-
-const inter = Inter({ subsets: ["latin"] })
+import { inter } from "./_components/Fonts"
 
 export const metadata: Metadata = {
   title: "Song Queue",
