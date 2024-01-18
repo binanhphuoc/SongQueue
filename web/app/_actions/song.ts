@@ -69,19 +69,6 @@ export async function updateSong(id: number, formData: FormData) {
   }
 }
 
-export async function deleteSong(id: number) {
-  try {
-    const deletedSong = await db.song.delete({
-      where: {
-        id: id,
-      },
-    })
-    return deletedSong
-  } catch (e) {
-    throw Error("Failed to delete song")
-  }
-}
-
 export async function playSong(id: number) {
   try {
     const deletedSong = await db.song.deleteMany({
@@ -146,9 +133,8 @@ export async function deleteSongInQueue(id: number) {
         id: id,
       },
     })
-
-    return { deletedSong }
+    return deletedSong
   } catch (e) {
-    return Error("Failed to play song")
+    throw Error("Failed to delete song")
   }
 }

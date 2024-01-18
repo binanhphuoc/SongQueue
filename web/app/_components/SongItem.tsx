@@ -75,6 +75,7 @@ export default function SongItem(props: Props) {
             {props.song.performers}
           </p>
         </div>
+
         {/* Delete Button */}
         {user && (
           <Image
