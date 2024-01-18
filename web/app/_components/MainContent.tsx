@@ -37,6 +37,7 @@ export default function MainContent(props: Props) {
         {/* Space */}
         <div className="h-20 flex-shrink-0" />
       </div>
+
       {/* Control */}
       <div className="flex flex-col relative">
         <AddButton />

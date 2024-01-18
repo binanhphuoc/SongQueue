@@ -1,9 +1,13 @@
 "use client"
 
+import Image from "next/image"
 import { Drawer } from "@mui/material"
 import { Song } from "@prisma/client"
 import { useState } from "react"
 import React from "react"
+import { useSession } from "next-auth/react"
+import PlayButton from "@/public/play-button.png"
+import { playSong } from "../_actions/song"
 import SongForm from "./AddButton/SongForm"
 
 type Props = {
@@ -12,12 +16,21 @@ type Props = {
 }
 
 export default function SongItem(props: Props) {
+  const session = useSession()
+  const user = session.data?.user
+
   const [drawer, toggleDrawer] = useState(false)
+
+  const handlePlay = () => {
+    playSong(props.song.id).catch((err) => {
+      console.error("Error", err)
+    })
+  }
 
   return (
     <React.Fragment>
       <div
-        className="flex flex-row items-center gap-2.5 bg-[rgba(255,255,255,0.70)] rounded-xl px-[15px] py-[10px] cursor-pointer"
+        className="flex flex-row items-center gap-2.5 bg-[rgba(255,255,255,0.85)] rounded-xl px-[15px] py-[10px] cursor-pointer"
         onClick={() => {
           toggleDrawer(true)
         }}
@@ -37,6 +50,21 @@ export default function SongItem(props: Props) {
             {props.song.performers}
           </p>
         </div>
+
+        {/* Play Button */}
+        {user && (
+          <Image
+            src={PlayButton.src}
+            height={PlayButton.height}
+            width={PlayButton.width}
+            alt="Play Button"
+            className="w-8 h-8 object-cover cursor-pointer"
+            onClick={(e) => {
+              e.stopPropagation()
+              handlePlay()
+            }}
+          />
+        )}
       </div>
 
       {/* Drawer */}
