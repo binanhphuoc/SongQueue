@@ -5,8 +5,7 @@ import Image from "next/image"
 import Welcome from "@/public/welcome.png"
 import BgImage from "@/public/bg-image.jpeg"
 import "../globals.css"
-import React, { useEffect, useState } from "react"
-import { usePathname } from "next/navigation"
+import React, { useState } from "react"
 
 const INTRO_STAY_STILL_DURATION_SEC = 0.5
 
@@ -15,13 +14,7 @@ export default function IntroAnimation({
 }: {
   children: React.ReactNode
 }) {
-  const pathname = usePathname()
   const [didCompleteIntroAnimation, setCompleteIntroAnimation] = useState(false)
-
-  useEffect(() => {
-    console.log("what")
-    setCompleteIntroAnimation(false)
-  }, [pathname])
 
   return (
     <div className="max-w-3xl w-full h-screen bg-red relative">
@@ -108,23 +101,21 @@ export default function IntroAnimation({
             </motion.div>
           </div>
         )}
-        {didCompleteIntroAnimation && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{
-              duration: 0.7,
-              delay: INTRO_STAY_STILL_DURATION_SEC,
-            }}
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              height: "100%",
-            }}
-          >
-            {children}
-          </motion.div>
-        )}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{
+            duration: 0.7,
+            delay: 2.4 + INTRO_STAY_STILL_DURATION_SEC,
+          }}
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            height: "100%",
+          }}
+        >
+          {children}
+        </motion.div>
       </main>
     </div>
   )
