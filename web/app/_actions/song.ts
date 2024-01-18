@@ -2,6 +2,7 @@
 
 import { zfd } from "zod-form-data"
 import { z } from "zod"
+import { revalidateTag } from "next/cache"
 import { db } from "@/app/_services/Database"
 
 const songSchema = z.object({
@@ -18,6 +19,10 @@ const songSchema = z.object({
   isplaying: z.coerce.number().default(0),
   createdDate: z.date(),
 })
+
+export async function revalidateSongs() {
+  revalidateTag("songs")
+}
 
 export async function addSong(formData: FormData) {
   const createSongSchema = songSchema.pick({
@@ -37,6 +42,7 @@ export async function addSong(formData: FormData) {
     const song = await db.song.create({
       data: { ...songData },
     })
+    revalidateSongs()
     return song
   } catch (e) {
     return Error("Failed to create song")

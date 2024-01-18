@@ -31,10 +31,10 @@ export default function AddButton() {
         open={drawer}
         onClose={() => toggleDrawer(false)}
         classes={{
-          paper: "bg-transparent flex items-center h-fit",
+          paper: "!bg-transparent flex items-center h-fit",
         }}
       >
-        <SongForm toggleDrawer={toggleDrawer} />
+        <SongForm mode="create" toggleDrawer={toggleDrawer} />
       </Drawer>
     </React.Fragment>
   )
