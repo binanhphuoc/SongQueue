@@ -1,6 +1,5 @@
 "use client"
 
-import Link from "next/link"
 import React from "react"
 import { useSession } from "next-auth/react"
 import { signOut } from "../_services/authenticator/actions"
@@ -14,12 +13,6 @@ export default function Navbar() {
       <h1 className="text-4xl text-[rgba(0,0,0,0.70)] font-extrabold">
         Up next
       </h1>
-
-      {!user && (
-        <Link href={"/auth/login"}>
-          <p className="text-[rgba(0,0,0,0.70)] cursor-pointer">Admin Login</p>
-        </Link>
-      )}
 
       {user && (
         <p
