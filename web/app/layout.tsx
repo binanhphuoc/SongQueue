@@ -1,13 +1,11 @@
 import Image from "next/image"
 import { SessionProvider } from "next-auth/react"
-import { Inter } from "next/font/google"
 import BgImage from "@/public/bg-image.jpeg"
 import { auth } from "./_services/authenticator"
 import type { Metadata } from "next"
 import "./globals.css"
 import TanStackProvider from "./_providers/TanStackProvider"
-
-const inter = Inter({ subsets: ["latin"] })
+import { inter } from "./_components/Fonts"
 
 export const metadata: Metadata = {
   title: "Song Queue",

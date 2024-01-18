@@ -1,5 +1,6 @@
 import Image from "next/image"
 import Welcome from "@/public/welcome.png"
+import { playfair_display, playfair_display_sc } from "@/app/_components/Fonts"
 import LoginForm from "./_components/LoginForm"
 
 export default function LoginPage() {
@@ -15,20 +16,30 @@ export default function LoginPage() {
           className="w-[280px] h-auto object-cover"
         />
 
-        <p className="text-sm text-[rgba(0,0,0,0.70)]">TO OUR WEDDING</p>
+        <p
+          className={`${playfair_display_sc.className} font-normal text-sm text-[rgba(0,0,0,0.70)]`}
+        >
+          TO OUR WEDDING
+        </p>
       </div>
 
       {/* Title */}
       <div className="flex flex-col text-[rgba(0,0,0,0.70)]">
-        <h1 className="text-4xl font-bold text-wrap text-center leading-normal font-['Playfair_Display']">
+        <h1
+          className={`${playfair_display_sc.className} text-4xl font-bold text-wrap text-center leading-normal font-['Playfair_Display']`}
+        >
           Tiến Nguyễn
         </h1>
 
-        <h1 className="text-2xl font-bold text-wrap text-center leading-normal font-['Playfair_Display']">
+        <h1
+          className={`${playfair_display.className} text-2xl font-normal text-wrap text-center leading-normal font-['Playfair_Display']`}
+        >
           &
         </h1>
 
-        <h1 className="text-4xl font-bold text-wrap text-center leading-normal font-['Playfair_Display']">
+        <h1
+          className={`${playfair_display_sc.className} text-4xl font-bold text-wrap text-center leading-normal font-['Playfair_Display']`}
+        >
           Nhi Nguyễn
         </h1>
       </div>
