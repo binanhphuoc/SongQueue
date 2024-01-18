@@ -48,7 +48,7 @@ export default function LoginForm() {
 
       <button
         type="submit"
-        className="bg-[#c5338a] p-2 rounded-lg font-bold mt-2 text-white"
+        className="bg-[#FF0E9F] p-2 rounded-lg font-bold mt-2 text-white"
       >
         Submit
       </button>

@@ -4,7 +4,7 @@ import { auth } from "./_services/authenticator"
 import type { Metadata } from "next"
 import "./globals.css"
 import TanStackProvider from "./_providers/TanStackProvider"
-import Motion from "./test"
+import IntroAnimation from "./_components/IntroAnimation"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -38,7 +38,7 @@ export default async function RootLayout({
           <TanStackProvider>
             <div className="min-h-screen min-w-screen bg-black flex justify-center">
               {/* Container */}
-              <Motion>{children}</Motion>
+              <IntroAnimation>{children}</IntroAnimation>
             </div>
           </TanStackProvider>
         </SessionProvider>
