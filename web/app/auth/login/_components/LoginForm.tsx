@@ -20,7 +20,7 @@ export default function LoginForm() {
 
   return (
     <form
-      className="rounded-xl bg-[rgba(255,255,255,0.70)] flex flex-col w-full max-w-lg overflow-hidden gap-6 p-6"
+      className="rounded-xl bg-[rgba(255,255,255,0.85)] flex flex-col w-full max-w-lg overflow-hidden gap-6 p-6"
       onSubmit={handleSubmit}
     >
       <div className="flex flex-col gap-1">

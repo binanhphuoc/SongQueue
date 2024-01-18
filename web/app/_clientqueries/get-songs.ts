@@ -18,7 +18,6 @@ const queryFn: QueryFunction<QueryData, (string | undefined)[]> = async (
       method: "get",
       url: `${process.env.NEXT_PUBLIC_BASE_URL}/${apiEndpoint}`,
     })
-    console.log(res)
     return res.data
   } catch (err) {
     return Promise.reject(err)

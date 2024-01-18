@@ -11,18 +11,16 @@ export default function AddButton() {
 
   return (
     <React.Fragment>
-      <div
-        className="flex justify-end py-2 px-4 absolute -top-20 w-full cursor-pointer"
-        onClick={() => {
-          toggleDrawer(true)
-        }}
-      >
+      <div className="flex justify-end py-2 px-4 absolute -top-20 w-full">
         <Image
           src={AddButtonImage.src}
           height={AddButtonImage.height}
           width={AddButtonImage.width}
           alt="Add Button"
-          className="w-16 h-16 object-cover"
+          className="w-16 h-16 object-cover cursor-pointer"
+          onClick={() => {
+            toggleDrawer(true)
+          }}
         />
       </div>
 

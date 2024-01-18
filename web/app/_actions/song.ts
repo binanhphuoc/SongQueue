@@ -2,6 +2,7 @@
 
 import { zfd } from "zod-form-data"
 import { z } from "zod"
+import { Song } from "@prisma/client"
 import { db } from "@/app/_services/Database"
 
 const songSchema = z.object({
@@ -53,5 +54,62 @@ export async function deleteSong(id: number) {
     return deletedSong
   } catch (e) {
     return Error("Failed to delete song")
+  }
+}
+
+export async function playSong(id: number) {
+  try {
+    const deletedSong = await db.song.deleteMany({
+      where: {
+        isplaying: 1,
+      },
+    })
+
+    const newPlaySong = await db.song.update({
+      where: { id },
+      data: { isplaying: 1 },
+    })
+
+    return { deletedSong, newPlaySong }
+  } catch (e) {
+    return Error("Failed to play song")
+  }
+}
+
+export async function playNextSong() {
+  try {
+    const deletedSong = await db.song.deleteMany({
+      where: {
+        isplaying: 1,
+      },
+    })
+
+    const queueSongs = await db.song.findMany({
+      where: { isplaying: 0 },
+      orderBy: [
+        {
+          createdDate: "asc",
+        },
+      ],
+    })
+
+    let newPlaySong: Song | null = null
+
+    if (queueSongs.length !== 0) {
+      const queueTop = queueSongs[0]
+
+      newPlaySong = await db.song.update({
+        where: {
+          id: queueTop.id,
+        },
+        data: {
+          isplaying: 1,
+        },
+      })
+    }
+
+    return { deletedSong, newPlaySong }
+  } catch (e) {
+    return Error("Failed to play song")
   }
 }
