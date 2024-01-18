@@ -5,7 +5,7 @@ import LoginForm from "./_components/LoginForm"
 
 export default function LoginPage() {
   return (
-    <div className="min-h-fit grow flex-shrink-0 flex flex-col items-center gap-6 overflow-auto py-12">
+    <div className="min-h-fit grow flex-shrink-0 flex flex-col items-center gap-6 overflow-auto py-12 px-6">
       {/* Welcome */}
       <div className="flex flex-col items-center gap-1 mb-8">
         <Image
