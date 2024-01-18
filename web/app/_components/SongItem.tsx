@@ -8,7 +8,8 @@ import React from "react"
 import { useSession } from "next-auth/react"
 import { useQueryClient } from "@tanstack/react-query"
 import PlayButton from "@/public/play-button.png"
-import { playSong } from "../_actions/song"
+import DeleteButton from "@/public/delete-button.png"
+import { playSong, deleteSongInQueue } from "../_actions/song"
 import GetSongs from "../_clientqueries/get-songs"
 import SongForm from "./AddButton/SongForm"
 
@@ -27,6 +28,19 @@ export default function SongItem(props: Props) {
 
   const handlePlay = () => {
     playSong(props.song.id)
+      .then(async () => {
+        await queryClient.invalidateQueries({
+          queryKey: GetSongs.queryKey,
+          exact: true,
+        })
+      })
+      .catch((err) => {
+        console.error("Error", err)
+      })
+  }
+
+  const handleDeleteSong = () => {
+    deleteSongInQueue(props.song.id)
       .then(async () => {
         await queryClient.invalidateQueries({
           queryKey: GetSongs.queryKey,
@@ -61,6 +75,20 @@ export default function SongItem(props: Props) {
             {props.song.performers}
           </p>
         </div>
+        {/* Delete Button */}
+        {user && (
+          <Image
+            src={DeleteButton.src}
+            height={DeleteButton.height}
+            width={DeleteButton.width}
+            alt="Delete Button"
+            className="w-8 h-8 object-cover cursor-pointer"
+            onClick={(e) => {
+              e.stopPropagation()
+              handleDeleteSong()
+            }}
+          />
+        )}
 
         {/* Play Button */}
         {user && (
