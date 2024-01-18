@@ -1,8 +1,8 @@
+import { Song } from "@prisma/client"
+
 type Props = {
   number: number
-  name: string
-  singers: string[]
-  tableNumber: string
+  song: Song
 }
 
 export default function SongItem(props: Props) {
@@ -16,11 +16,11 @@ export default function SongItem(props: Props) {
       {/* Info */}
       <div className="flex flex-col gap-1 text-sm text-black w-full overflow-hidden">
         <p className="text-lg font-bold text-wrap overflow-hidden text-ellipsis">
-          {props.name}
+          {props.song.songname}
         </p>
 
         <p className="text-[#555] text-wrap overflow-hidden text-ellipsis">
-          {props.singers.join(", ")}
+          {props.song.performers}
         </p>
       </div>
     </div>

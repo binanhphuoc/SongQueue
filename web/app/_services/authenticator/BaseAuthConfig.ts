@@ -18,7 +18,7 @@ export const authConfig = {
     }) {
       const isLoggedIn = !!auth?.user
 
-      if (isLoggedIn) {
+      if (isLoggedIn && nextUrl.pathname !== "/") {
         return Response.redirect(new URL("/", nextUrl))
       }
 

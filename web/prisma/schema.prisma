@@ -21,6 +21,7 @@ model Song {
   id           Int      @id @default(autoincrement())
   songname     String
   singer       String
+  youtubelink  String?
   tableno      Int
   relationship String
   performers   String

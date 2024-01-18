@@ -1,37 +1,39 @@
-import Link from "next/link"
+import Image from "next/image"
+import Welcome from "@/public/welcome.png"
+import LoginForm from "./_components/LoginForm"
 
-export default function LoginForm() {
+export default function LoginPage() {
   return (
-    <div className="min-h-fit grow flex-shrink-0 flex flex-col items-center justify-center gap-6 overflow-auto py-12">
-      <h1 className="text-4xl font-bold text-wrap text-center leading-normal">
-        Tien & Nhi Wedding
-      </h1>
+    <div className="min-h-fit grow flex-shrink-0 flex flex-col items-center gap-6 overflow-auto py-12">
+      {/* Welcome */}
+      <div className="flex flex-col items-center gap-1 mb-8">
+        <Image
+          src={Welcome.src}
+          height={Welcome.height}
+          width={Welcome.width}
+          alt="Welcome"
+          className="w-[280px] h-auto object-cover"
+        />
 
-      <form className="rounded-xl bg-[rgba(255,255,255,0.70)] flex flex-col w-full max-w-lg overflow-hidden gap-6 p-6">
-        <div className="flex flex-col gap-1">
-          <label className="text-black">Username</label>
-          <input
-            className="text-black placeholder:text-slate-500 bg-transparent outline-none p-2 border-b-2 border-[rgba(128,128,128,1)] focus:border-[rgba(255,107,196,1)] transition-[border-color]"
-            placeholder="Admin username..."
-          />
-        </div>
+        <p className="text-sm text-[rgba(0,0,0,0.70)]">TO OUR WEDDING</p>
+      </div>
 
-        <div className="flex flex-col gap-1">
-          <label className="text-black">Password</label>
-          <input
-            className="text-black placeholder:text-slate-500 bg-transparent outline-none p-2 border-b-2 border-[rgba(128,128,128,1)] focus:border-[rgba(255,107,196,1)] transition-[border-color]"
-            placeholder="Password..."
-          />
-        </div>
+      {/* Title */}
+      <div className="flex flex-col text-[rgba(0,0,0,0.70)]">
+        <h1 className="text-4xl font-bold text-wrap text-center leading-normal font-['Playfair_Display']">
+          Tiến Nguyễn
+        </h1>
 
-        <button className="bg-[#c5338a] p-2 rounded-lg font-bold mt-2">
-          Submit
-        </button>
+        <h1 className="text-2xl font-bold text-wrap text-center leading-normal font-['Playfair_Display']">
+          &
+        </h1>
 
-        <Link href={"/"} className="text-black flex justify-center">
-          Back to home
-        </Link>
-      </form>
+        <h1 className="text-4xl font-bold text-wrap text-center leading-normal font-['Playfair_Display']">
+          Nhi Nguyễn
+        </h1>
+      </div>
+
+      <LoginForm />
     </div>
   )
 }

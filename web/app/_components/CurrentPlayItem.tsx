@@ -1,10 +1,9 @@
 import Image from "next/image"
+import { Song } from "@prisma/client"
 import PlayingButton from "@/public/playing-button.png"
 
 type Props = {
-  name: string
-  singers: string[]
-  tableNumber: string
+  song: Song
 }
 
 export default function CurrentPlayItem(props: Props) {
@@ -22,11 +21,11 @@ export default function CurrentPlayItem(props: Props) {
       </div>
 
       <p className="text-lg font-bold text-wrap overflow-hidden text-ellipsis">
-        {props.name}
+        {props.song.songname}
       </p>
 
       <p className="text-[#555] text-wrap overflow-hidden text-ellipsis">
-        {props.singers.join(", ")}
+        {props.song.performers}
       </p>
     </div>
   )
