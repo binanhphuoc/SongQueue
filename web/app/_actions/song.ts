@@ -116,7 +116,7 @@ export async function playNextSong() {
 
 export async function deleteSongInQueue(id: number) {
   try {
-    const deletedSong = await db.song.deleteMany({
+    const deletedSong = await db.song.delete({
       where: {
         id: id,
       },
