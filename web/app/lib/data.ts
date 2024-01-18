@@ -13,11 +13,20 @@ const createSongSchema = z.object({
   createdDate: z.date(),
 })
 export async function addSong(
-  prevSate: string | undefined,
+  prevState: string | object | undefined,
   formData: FormData
 ) {
-  const songData = createSongSchema.parse(formData)
-  songData.createdDate = new Date()
+  console.log("addsong")
+  const songData = createSongSchema.parse({
+    performers: formData.get("performers"),
+    songname: formData.get("songname"),
+    relationship: formData.get("relationship"),
+    singer: formData.get("singer"),
+    tableno: Number(formData.get("tableno")),
+    youtubelink: formData.get("youtubelink"),
+    createdDate: new Date(),
+  })
+  console.log(songData)
   try {
     const song = await db.song.create({
       data: songData,
