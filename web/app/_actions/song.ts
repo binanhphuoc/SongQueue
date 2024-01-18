@@ -138,3 +138,17 @@ export async function playNextSong() {
     throw Error("Failed to play song")
   }
 }
+
+export async function deleteSongInQueue(id: number) {
+  try {
+    const deletedSong = await db.song.delete({
+      where: {
+        id: id,
+      },
+    })
+
+    return { deletedSong }
+  } catch (e) {
+    return Error("Failed to play song")
+  }
+}
