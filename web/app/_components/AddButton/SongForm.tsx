@@ -3,7 +3,9 @@
 import { Alert, Snackbar } from "@mui/material"
 import { useState } from "react"
 import { Song } from "@prisma/client"
+import { useQueryClient } from "@tanstack/react-query"
 import { addSong } from "@/app/_actions/song"
+import GetSongs from "@/app/_clientqueries/get-songs"
 import SongFormField from "./SongFormField"
 
 type Props = {
@@ -14,6 +16,7 @@ type Props = {
 
 export default function SongForm(props: Props) {
   const [err, setErr] = useState("")
+  const queryClient = useQueryClient()
 
   const handleAction = async (formData: FormData) => {
     // const entries = formData.entries()
@@ -28,7 +31,11 @@ export default function SongForm(props: Props) {
     }
 
     addSong(formData)
-      .then(() => {
+      .then(async () => {
+        await queryClient.invalidateQueries({
+          queryKey: GetSongs.queryKey,
+          exact: true,
+        })
         props.toggleDrawer(false)
       })
       .catch((err: Error) => {

@@ -1,30 +1,16 @@
 "use client"
 
-import { Song } from "@prisma/client"
-import React, { useEffect } from "react"
-import { revalidateSongs } from "../_actions/song"
+import React from "react"
+import GetSongs from "../_clientqueries/get-songs"
 import SongItem from "./SongItem"
 import AddButton from "./AddButton/AddButton"
 import CurrentPlayItem from "./CurrentPlayItem"
 
-type Props = {
-  songs: Song[]
-}
-
-export default function MainContent(props: Props) {
-  const songs = props.songs
-  const wailistSongs = songs.filter((val) => val.isplaying === 0)
-  const playSong = songs.find((val) => val.isplaying === 1)
-
-  useEffect(() => {
-    const interval = window.setInterval(() => {
-      revalidateSongs()
-    }, 5 * 1000)
-
-    return () => {
-      window.clearInterval(interval)
-    }
-  }, [])
+export default function MainContent() {
+  const songsData = GetSongs.useQueryWrapper()
+  const wailistSongs =
+    songsData.data?.songs.filter((val) => val.isplaying === 0) ?? []
+  const playSong = songsData.data?.songs.find((val) => val.isplaying === 1)
 
   return (
     <React.Fragment>
