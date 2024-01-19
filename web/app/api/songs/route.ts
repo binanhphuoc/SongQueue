@@ -4,16 +4,12 @@ import { db } from "@/app/_services/Database"
 export const revalidate = 5 // sec
 
 export async function GET(_request: Request) {
-  try {
-    const songs = await db.song.findMany({
-      orderBy: [
-        {
-          createdDate: "asc",
-        },
-      ],
-    })
-    return Response.json({ songs })
-  } catch (e) {
-    throw Error("Failed to fetch songs")
-  }
+  const songs = await db.song.findMany({
+    orderBy: [
+      {
+        createdDate: "asc",
+      },
+    ],
+  })
+  return Response.json({ songs })
 }

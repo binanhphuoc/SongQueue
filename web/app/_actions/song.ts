@@ -34,14 +34,10 @@ export async function addSong(formData: FormData) {
   const formDataSchema = zfd.formData(createSongSchema)
   const songData = formDataSchema.parse(formData)
 
-  try {
-    const song = await db.song.create({
-      data: { ...songData },
-    })
-    return song
-  } catch (e) {
-    throw Error("Failed to create song")
-  }
+  const song = await db.song.create({
+    data: { ...songData },
+  })
+  return song
 }
 
 export async function updateSong(id: number, formData: FormData) {
