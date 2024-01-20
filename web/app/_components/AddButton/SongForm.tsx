@@ -53,7 +53,7 @@ export default function SongForm(props: Props) {
 
   return (
     <form
-      className="max-w-3xl w-full h-screen overflow-auto rounded-t-2xl bg-white"
+      className="max-w-3xl w-full h-[--height-app] overflow-auto rounded-t-2xl bg-white"
       action={handleAction}
     >
       {/* Snackbar */}

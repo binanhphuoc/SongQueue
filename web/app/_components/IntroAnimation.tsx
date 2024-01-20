@@ -18,7 +18,7 @@ export default function IntroAnimation({
   const [didCompleteIntroAnimation, setCompleteIntroAnimation] = useState(false)
 
   return (
-    <div className="max-w-3xl w-full h-screen relative">
+    <div className="max-w-3xl w-full h-[--height-app] relative">
       {/* Background image */}
       <Image
         src={BgImage.src}
