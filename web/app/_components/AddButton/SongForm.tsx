@@ -156,6 +156,7 @@ export default function SongForm(props: Props) {
           required
           disabled={props.mode === "view"}
           defaultValue={props.song?.songname}
+          copy
         />
 
         <SongFormField
@@ -165,6 +166,7 @@ export default function SongForm(props: Props) {
           required
           disabled={props.mode === "view"}
           defaultValue={props.song?.singer}
+          copy
         />
 
         <SongFormField
@@ -173,6 +175,7 @@ export default function SongForm(props: Props) {
           placeholder="e.g. https://youtu.be/sXa8ylsdaE4?si=56oeynged-QHvLYK"
           disabled={props.mode === "view"}
           defaultValue={props.song?.youtubelink ?? undefined}
+          copy
         />
       </div>
     </form>
