@@ -51,6 +51,7 @@ export default function SongFormField(props: Props) {
       <input
         style={{
           WebkitTextFillColor: props.disabled ? "rgba(0,0,0,1)" : undefined,
+          opacity: props.disabled ? 1 : undefined,
         }}
         type={props.type ?? "text"}
         name={props.id}
