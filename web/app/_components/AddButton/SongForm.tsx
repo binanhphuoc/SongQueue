@@ -75,7 +75,7 @@ export default function SongForm(props: Props) {
       </Snackbar>
 
       {/* Header */}
-      <div className="sticky top-0 bg-white flex gap-2 justify-between items-center flex-wrap p-4">
+      <div className="sticky top-0 z-10 bg-white flex gap-2 justify-between items-center flex-wrap p-4">
         <p
           className="text-sm font-medium cursor-pointer"
           onClick={() => {

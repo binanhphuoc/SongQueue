@@ -13,7 +13,7 @@ type Props = {
 export default function SongFormField(props: Props) {
   return (
     <div className="flex flex-col gap-1">
-      <label htmlFor={props.id} className="text-black">
+      <label htmlFor={props.id} className="text-black font-bold">
         {props.label}
         {props.required && <span className="text-[#FF0D9F] ml-1">*</span>}
       </label>
@@ -25,7 +25,7 @@ export default function SongFormField(props: Props) {
         required={props.required}
         defaultValue={props.defaultValue}
         disabled={props.disabled}
-        className="text-black placeholder:text-slate-500 bg-transparent outline-none p-2 border-b-2 border-[rgba(128,128,128,1)] focus:border-[rgba(255,107,196,1)] transition-[border-color]"
+        className="!text-black !opacity-100 placeholder:text-slate-500 bg-transparent outline-none p-2 border-b-2 border-[rgba(128,128,128,1)] focus:border-[rgba(255,107,196,1)] transition-[border-color]"
         placeholder={
           props.disabled &&
           typeof props.defaultValue === "string" &&
