@@ -5,6 +5,7 @@ import "./globals.css"
 import TanStackProvider from "./_providers/TanStackProvider"
 import IntroAnimation from "./_components/IntroAnimation"
 import { inter } from "./_components/Fonts"
+import AppHeightEffect from "./_components/AppHeightEffect"
 
 export const metadata: Metadata = {
   title: "Song Queue",
@@ -34,8 +35,8 @@ export default async function RootLayout({
       <body className={inter.className}>
         <SessionProvider session={session}>
           <TanStackProvider>
-            <div className="min-h-screen min-w-screen bg-black flex justify-center">
-              {/* Container */}
+            <div className="min-h-[--height-app] min-w-screen bg-black flex justify-center">
+              <AppHeightEffect />
               <IntroAnimation>{children}</IntroAnimation>
             </div>
           </TanStackProvider>
